@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+ 
+<!-- jQuery -->    
+    <script  src="/jquery/jquery-3.3.1.min.js">
+    </script>
+    
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>
+
+    
+    <!-- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+     -->
+     
+     <script>
+     
+     $(document).ready(function(){
+    	 
+    	 $('#customers-list').DataTable();
+    
+     });
+     
+     /* $("#outstanding").click(function(){
+    	 
+		 alert("first click");
+    	 var id=$(tmpCustomers.id).val();
+    	 $.ajax({
+    		 
+    		 contentType:'application/json',
+    		 dataType:'json',
+    		 url="/customers/6/outstanding-details",
+    		 success:function(outstanding){
+    			 
+    			 alert(outstanding);
+    			  $("#div1").html(result); 
+    		 }
+    	 }); 
+     });  
+     */
+     </script>
+     
+    	<title>Customers Directory</title>
+    
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Customers Directory</h3>
+	<hr>
+	<a th:href="@{/customers/show-form-for-add}" class="btn btn-success mb-4 col-2">Add Customer</a>
+	
+	<table id="customers-list" class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Father Name</th>
+				
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tmpCustomers:${customers}">
+			<td th:text="${tmpCustomers.firstName}">fname</td>
+			<td th:text="${tmpCustomers.lastName}">lname</td>
+			<td th:text="${tmpCustomers.fatherName}">father name</td>
+			<td>
+			<a th:href="@{/customers/{id}/update-customer(id=${tmpCustomers.id})}" class="btn btn-primary mb-2">Update</a>
+			<a th:href="@{/customers/{id}/show-form-for-purchase(id=${tmpCustomers.id})}" class="btn btn-success mb-2">Purchase</a>
+			<a th:href="@{/customers/{id}/purchase-details(id=${tmpCustomers.id})}" class="btn btn-info mb-2">Purchase Details</a>
+			<a th:href="@{/customers/{id}/purchase-payment-details(id=${tmpCustomers.id})}" class="btn btn-danger mb-2" id="paymentdetails">Payment Details</a>
+			<a th:href="@{/customers/{id}/outstanding-details(id=${tmpCustomers.id})}" class="btn btn-danger mb-2" id="outstanding">Outstanding</a>
+			</tr>
+		</tbody>		
+	</table>
+	
+	<div th:insert="~{@{/customers/footer}::copy}">
+	</div>
+	
+</div>
+	 
+</body>
+</html>
+
+<!-- <a th:href="@{/customers/delete-customer/{id}(id=${tmpCustomers.id})}" class="btn btn-danger mb-2" onclick="return confirm('are you sure want to delete?')">Delete</a>
+			<a th:href="@{/customers/show-form-for-pay/{id}(id=${tmpCustomers.id})}" class="btn btn-success mb-2">Pay</a> -->
+			

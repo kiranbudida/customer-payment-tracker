@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+      
+    	<title>Customer Outstanding</title>
+    
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Customers Outstanding</h3>
+	<hr>
+	
+	<table id="customers-list" class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+			<!-- 	<th>First Name</th>
+				<th>Last Name</th>
+				<th>Father Name</th>
+				
+			 -->	<th>Outstanding</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+			<!-- <td th:text="${tmpCustomers.firstName}" >fname</td>
+			<td th:text="${tmpCustomers.lastName}" >lname</td>
+			<td th:text="${tmpCustomers.fatherName}" >father name</td>
+			 -->
+			 <td th:text="${outstanding}">Outstanding</td>
+			</tr>
+		</tbody>		
+	</table>
+	<a th:href="@{/customers/list}">Back to customers list</a>
+	
+	<hr>
+	
+	<div th:insert="~{@{/customers/footer}::copy}">
+	</div>
+	
+</div>
+	 
+</body>
+</html>

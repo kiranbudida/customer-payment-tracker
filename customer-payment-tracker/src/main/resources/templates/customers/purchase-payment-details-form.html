@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+ 
+<!-- jQuery -->    
+    <script  src="/jquery/jquery-3.3.1.min.js">
+    </script>
+    
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>
+
+    
+    <!-- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+     -->
+     
+     <script>
+     
+     $(document).ready(function(){
+    	 
+    	 $('#customers-list').DataTable();
+    
+     });
+     
+     /* $("#outstanding").click(function(){
+    	 
+		 alert("first click");
+    	 var id=$(tmpCustomers.id).val();
+    	 $.ajax({
+    		 
+    		 contentType:'application/json',
+    		 dataType:'json',
+    		 url="/customers/6/outstanding-details",
+    		 success:function(outstanding){
+    			 
+    			 alert(outstanding);
+    			  $("#div1").html(result); 
+    		 }
+    	 }); 
+     });  
+     */
+     </script>
+     
+    	<title>Customers Directory</title>
+    
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Payment Details</h3>
+	<hr>
+	
+	
+	<table id="customers-list" class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Father Name</th>
+				<th>Purchase Date</th>
+				<th>Amount</th>
+				<th>Payment Date</th>
+				<th>Paid Amount</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tmpCustomers:${custPurchasePayment}">
+			<td th:text="${tmpCustomers.firstName}">fname</td>
+			<td th:text="${tmpCustomers.lastName}">lname</td>
+			<td th:text="${tmpCustomers.fatherName}">father name</td>
+			
+			<td th:text="${tmpCustomers.purchaseDate}">Purchase Date</td>
+			<td th:text="${tmpCustomers.amount}">Amount</td>
+			<td th:text="${tmpCustomers.paymentDate}">Payment Date</td>
+			<td th:text="${tmpCustomers.paidamount}">Paid Amount</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+	
+	
+<hr>
+
+<a th:href="@{/customers/list}">Back to customers list</a>
+
+<br><br>
+
+<div th:insert="~{@{/customers/footer}::copy}">
+</div>
+	
+	
+	
+</div>
+	 
+</body>
+</html>

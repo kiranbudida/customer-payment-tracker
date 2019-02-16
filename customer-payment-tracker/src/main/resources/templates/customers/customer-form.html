@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<style>
+.field-align{
+margin-right:15px;
+}
+</style>
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      
+      <!-- Javascript -->
+      <script>
+         $(function() {
+        	 
+            $( "#purchaseDate" ).datepicker({
+            	
+            	dateFormat:'yy-mm-dd'
+            })
+            
+             $( "#paidDate" ).datepicker({
+            	
+            	dateFormat:'yy-mm-dd'
+            })
+         });
+      </script>
+ 
+
+
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/bootstrap/js/bootstrap.min.js" >
+    
+    <link rel="stylesheet" href="/jquery/jquery-3.3.1.min.js">
+    
+   <!-- Bootstrap CSS -->
+   <!--   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+   integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+    --> 
+    	<title>Save Customer</title>
+</head>
+
+<body>
+<div class="container">
+<h3>Customer Directory</h3>
+<hr>
+<p class="h4 mb-4">Save Customer</p>
+
+<form th:action="@{/customers/save-customer}" th:object=${customer} method="post">
+<input type="hidden" th:field="*{id}" />
+<div class="row">
+<input type="text" th:field="*{firstName}" placeholder="first name" class="form-control col-sm-3 mb-4 field-align" autocomplete="off">
+<input type="text" th:field="*{lastName}" placeholder="last name" class="form-control col-sm-3 mb-4" autocomplete="off">
+</div>
+
+<div class="row">
+<input type="text" th:field="*{fatherName}" placeholder="father name" class="form-control col-sm-3 mb-4 field-align" autocomplete="off">
+</div>
+
+<!-- 
+<input type="text" th:field="*{purchaseDate}" placeholder="purchase date" id="purchaseDate" class="form-control col-sm-3 mb-4" autocomplete="off"> 
+<div class="row">
+<input type="text" th:field="*{quantity}" title="Quantity" placeholder="quantity" class="form-control col-sm-3 mb-4 field-align" autocomplete="off">
+<input type="text" th:field="*{amount}"  title="Amount" placeholder="amount" class="form-control col-sm-3 mb-4" autocomplete="off">
+</div>
+
+
+
+<div class="row">
+<input type="text" th:field="*{paidDate}" placeholder="paid date" id="paidDate" class="form-control col-sm-3 mb-4 field-align" autocomplete="off">
+<input type="text" th:field="*{paidAmount}" title="Paid Amount" placeholder="paid amount" class="form-control col-sm-3 mb-4" autocomplete="off">
+</div>
+ -->
+
+<button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+
+<hr>
+
+<a th:href="@{/customers/list}">Back to customers list</a>
+
+<div th:insert="~{@{/customers/footer}::copy}">
+</div>
+</div>
+</body>
+
+</html>

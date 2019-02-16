@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+ 
+<!-- jQuery -->    
+    <script  src="/jquery/jquery-3.3.1.min.js">
+    </script>
+    
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>
+
+    
+    <!-- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+     -->
+     
+     <script>
+     
+     $(document).ready(function(){
+    	 
+    	 $('#customers-list').DataTable();
+     });
+     </script>
+     
+    	<title>Customers Directory</title>
+    
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Purchase Details</h3>
+	<hr>
+	<!-- <a th:href="@{/customers/show-form-for-add}" class="btn btn-success mb-4 col-2">Add Customer</a> -->
+	
+	<table id="customers-list" class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Purchase Date</th>
+				<th>Quantity</th>
+				<th>Amount</th>
+				
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tmpPurchase:${purchases}" >
+			<td th:text="${tmpPurchase.purchaseDate}">Purchase Date</td>
+			<td th:text="${tmpPurchase.quantity}" >Quantity</td>
+			<td th:text="${tmpPurchase.amount}" >Amount</td>
+			
+			<!-- <td><a th:href="@{/customers/update-customer/{id}(id=${tmpCustomers.id})}" class="btn btn-success mb-2">Update</a>
+			<a th:href="@{/customers/delete-customer/{id}(id=${tmpCustomers.id})}" class="btn btn-danger mb-2" onclick="return confirm('are you sure want to delete?')">Delete</a>
+			<a th:href="@{/customers/purchase-details/{id}(id=${tmpCustomers.id})}" class="btn btn-info mb-2">Details</a>
+			
+			<a th:href="@{/customers/show-form-for-pay/{id}(id=${tmpCustomers.id})}" class="btn btn-success mb-2">Pay</a>
+			<a th:href="@{/customers/show-form-for-purchase/{id}(id=${tmpCustomers.id})}" class="btn btn-success mb-2">Purchase</a>
+			</td>-->
+			
+			<td><a th:href="@{/customers/show-form-for-pay/{id}(id=${tmpPurchase.id})}" class="btn btn-success mb-2">Pay</a></td> 
+			</tr>
+		</tbody>		
+	</table>
+	
+	
+	<a th:href="@{/customers/list}">Back to customers list</a>
+	<br><br>
+	<hr>
+	
+	<div th:insert="~{@{/customers/footer}::copy}">
+	</div>
+	
+</div>
+	 
+	 
+</body>
+</html>

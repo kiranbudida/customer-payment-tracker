@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+ 
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      
+      <!-- Javascript -->
+      <script>
+         $(function() {
+        	 
+            $( "#paymentDate" ).datepicker({
+            	
+            	dateFormat:'yy-mm-dd'
+            })
+            
+         
+         });
+      </script>
+ 
+
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    	<title>Save Payment</title>
+</head>
+
+<body>
+<div class="container">
+<h3>Customer Directory</h3>
+<hr>
+<p class="h4 mb-4">Save Payment</p>
+
+<form th:action="@{/customers/purchase/{pid}/save-payment(pid=${purchaseId})}" th:object=${payment} method="post">
+<input type="hidden" th:field="*{id}" />
+<!-- <input type="text" th:field="*{firstName}" placeholder="first name" class="form-control col-sm-4 mb-4"> 
+<input type="text" th:field="*{lastName}" placeholder="last name" class="form-control col-sm-4 mb-4">
+<input type="text" th:field="*{fatherName}" placeholder="father name" class="form-control col-sm-4 mb-4">
+ -->
+ <input type="text" th:field="*{paymentDate}" placeholder="payment date" class="form-control col-sm-4 mb-4" autocomplete=off>
+<!-- <input type="text" th:field="*{quantity}" placeholder="quantity" class="form-control col-sm-4 mb-4"> -->
+<input type="text" th:field="*{paidAmount}" placeholder="amount" class="form-control col-sm-4 mb-4">
+<button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+
+<hr>
+
+<a th:href="@{/customers/list}">Back to customers list</a>
+
+<div th:insert="~{@{/customers/footer}::copy}">
+</div>
+
+</div>
+</body>
+
+</html>
